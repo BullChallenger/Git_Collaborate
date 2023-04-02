@@ -1,6 +1,7 @@
 package com.github.collab.service;
 
 import com.github.collab.domain.Account;
+import com.github.collab.dto.SignUpRequestAccountDto;
 import com.github.collab.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,4 @@ public class AccountService {
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-
-    public Account saveAccount()
 }

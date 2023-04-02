@@ -5,10 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,7 +15,7 @@ import javax.persistence.Id;
 public class Account {
 
     @Id
-    @Column
+    @Column(name = "user_id")
     @GeneratedValue
     private Long userId;
 
@@ -29,10 +28,24 @@ public class Account {
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Article> articleList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> commentList = new ArrayList<>();
+
     @Builder
     public Account(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
+    }
+
+    public void addArticle(Article article) {
+        articleList.add(article);
+    }
+
+    public void addComment(Comment comment) {
+        commentList.add(comment);
     }
 }
