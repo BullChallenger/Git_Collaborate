@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/git_db?serverTimezone=UTC
+    url: jdbc:mysql://localhost:336/git_db?serverTimezone=UTC
     username: root
-    password:
+    password: test001
 
   jpa:
     hibernate:
