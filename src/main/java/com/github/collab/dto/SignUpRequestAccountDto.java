@@ -3,6 +3,7 @@ package com.github.collab.dto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.github.collab.domain.Account;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,5 +32,14 @@ public class SignUpRequestAccountDto {
 
     @JsonPOJOBuilder(withPrefix = "")
     public static class SignUpRequestAccountDtoBuilder {
+    }
+
+    public Account toEntity(SignUpRequestAccountDto accountDto) {
+
+        return Account.builder()
+                        .email(accountDto.email)
+                        .password(accountDto.password)
+                        .name(accountDto.name)
+                .build();
     }
 }
